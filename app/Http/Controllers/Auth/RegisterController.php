@@ -67,7 +67,7 @@ class RegisterController extends Controller
             "password.confirmed" => "パスワードが一致しません",
         ];
         return Validator::make($data, [
-            'user_id' => ['required', 'integer', 'max:11', 'unique:users'],
+            'user_id' => ['required', 'integer', 'max:99999999999', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'regex:/^.*(?=.{3,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 'min:8', 'max:30', 'confirmed'],

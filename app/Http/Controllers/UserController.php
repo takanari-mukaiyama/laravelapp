@@ -166,9 +166,17 @@ class UserController extends Controller
 
     public function penaltyComplete(LibraryRequest $request){
         $user_id = $request->user_id;
-        $penalty_id = Penalty::penaltyData($user_id)->first()->id;
-        $form = ["penalty_end" => $request->penalty_end];
-        Penalty::find($penalty_id)->fill($form)->save();
+        if(Penalty::allPenaltyData($user_id)->exists()){
+            $penalty_id = Penalty::allPenaltyData($user_id)->first()->id;
+            $form = ["penalty_end" => $request->penalty_end];
+            Penalty::find($penalty_id)->fill($form)->save();
+        }else{
+            $p = new Penalty;
+            $form = ["user_id"     => $user_id,
+                     "penalty_end" => $request->penalty_end,
+            ];
+            $p->fill($form)->save();
+        }
         return view("library.users.penaltycomplete");
     }
 
@@ -218,7 +226,8 @@ class UserController extends Controller
  
     public function roleComplete(LibraryRequest $request){
         $data = ["role" => $request->role_id];
-        User::find($request->user_id)->fill($data)->save();
+        $id = User::getUserInfo($request->user_id)->first()->id;
+        User::find($id)->fill($data)->save();
         return view("library.users.rolecomplete");
     }
 }

@@ -132,6 +132,8 @@ Route::post('users/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('users/register', 'Auth\RegisterController@register');
 
+
+Route::get("portfolio", function(){return view("portfolio");});
 //Route::get('users/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 //Route::post('users/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //Route::get('users/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');

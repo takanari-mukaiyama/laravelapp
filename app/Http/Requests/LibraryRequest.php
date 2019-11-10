@@ -24,7 +24,7 @@ class LibraryRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id"         => "sometimes|integer|required|max:11",
+            "user_id"         => "sometimes|integer|required|max:99999999999",
             "name"            => "sometimes|required|string|max:255",
             "email"           => "sometimes|required|email|max:255|unique:users",
             "book_title"      => "sometimes|required|max:255",
